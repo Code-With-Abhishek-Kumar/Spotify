@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="shortcut icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Spotify_icon.svg/768px-Spotify_icon.svg.png" type="image/x-icon">
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.js"
+    ></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="Public/Stylesheet/style.css" />
+    <link rel="stylesheet" href="Public/Stylesheet/textUtill.css" />
+    <link rel="stylesheet" href="Public/Stylesheet/util.css" />
+    <title>Spotify</title>
+  </head>
+  <body>
+    <main class="flex">
+      <div id="left" class="flex flex-col white-right-border fixed">
+        <div id="left_part1" class="flex flex-col p10">
+          <div class="logo flex">
+            <img
+              class="h-35 invert"
+              src="./Public/SVG/logo.svg"
+              alt=""
+              srcset=""
+            />
+          </div>
+
+          <div class="home-icon flex item-center gap20">
+            <img src="./Public/SVG/home.svg" alt="" srcset="" class="invert" />
+            <span class="text-base text-gray roboto-bold">Home</span>
+          </div>
+          <div class="search-icon flex item-center gap20">
+            <img
+              src="./Public/SVG/search.svg"
+              alt=""
+              srcset=""
+              class="invert"
+            />
+            <span class="text-base text-gray roboto-bold">Search</span>
+          </div>
+        </div>
+
+        <div id="left_part2">
+          <div id="library_div" class="flex item-center justify-between p-10">
+            <div class="flex gap20 ml20">
+              <img
+                src="./Public/SVG/library.svg"
+                alt=""
+                srcset=""
+                class="invert"
+              />
+              <span class="tex-base roboto-bold text-gray">Your Library</span>
+            </div>
+
+            <ion-icon
+              class="mr10 text-2xl text-gray"
+              name="add-outline"
+            ></ion-icon>
+          </div>
+
+          <div id="container">
+            <!-- <section
+              id="playlist"
+              class="h125px bg-1e1e1e rounded-md text-white flex justify-center flex-col p10"
+            >
+              <div class="flex flex-col gap10">
+                <span class="block roboto-medium"
+                  >Create your first playlist</span
+                >
+                <span class="block roboto-regular"
+                  >It’s easy, we’ll help you</span
+                >
+              </div>
+              <div>
+                <button
+                  class="rounded-full border-none px8 py15 mt20 roboto-bold"
+                >
+                  <span>Create playlist</span>
+                </button>
+              </div>
+            </section>
+            <section
+              id="podcasts_div"
+              class="h125px mt10 bg-1e1e1e rounded-md text-white flex justify-center flex-col p10"
+            >
+              <div class="flex flex-col gap10">
+                <span class="block roboto-medium"
+                  >Let’s find some podcasts to follow</span
+                >
+                <span class="block roboto-regular">
+                  We’ll keep you updated on new episodes</span
+                >
+              </div>
+              <div
+                class="rounded-full bg-white w-fit border-none px8 py15 mt20 roboto-bold"
+              >
+                <a class="text-black" href="/genre/podcasts-web">
+                  <span>Browse podcasts</span>
+                </a>
+              </div>
+            </section> -->
+
+<div id="song_item" class="text-white">
+
+</div>
+
+            <div>
+              <ul role="list" tabindex="0" aria-label="Your Library">
+                <div
+                  role="presentation"
+                  style="height: 0px; --row-height: 64px"
+                >
+                  <div role="presentation" style="height: 0px">
+                    <li role="listitem" style="height: calc(100% + 0px)"></li>
+                    <div role="presentation" style="height: 0px"></div>
+                  </div>
+                  <div
+                    role="presentation"
+                    style="transform: translateY(0px)"
+                  ></div>
+                  <div role="presentation" style="height: calc(100% + 0px)">
+                    <div role="presentation" style="height: 0px"></div>
+                    <li role="listitem" style="height: calc(100% + 0px)"></li>
+                  </div>
+                </div>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="right" class="rounded-md relative">
+        <div id="right-part1" class="flex justify-between rounded-t-lg">
+          <div class="right_box1">
+            <div class="flex item-center h-full ml20" id="back_forward_div">
+              <ion-icon name="chevron-back-outline"></ion-icon>
+              <ion-icon name="chevron-forward-outline"></ion-icon>
+            </div>
+            <div class=""></div>
+          </div>
+          <div class="right_box2 flex item-center gap20">
+            <button class="roboto-bold p15 tex-sm ">Sign up</button>
+            <button class="roboto-bold p15 tex-sm rounded-full px15 py40 cursor:hover">
+              Login
+            </button>
+          </div>
+        </div>
+        <div id="right-part2">
+          <h2 class="text-white roboto-medium">Spotify Playlists</h2>
+          <div id="playlist_container" class="flex w-full ab">
+            <div class="playlist_box">
+              <div class="img_container_layer1">
+                <img
+                  src="https://seeded-session-images.scdn.co/v2/img/122/secondary/artist/4YRxDV8wJFPHPTeXepOstw/en-GB"
+                  alt=""
+                  srcset=""
+                  class="w-full rounded-md h-full"
+                />
+              </div>
+              <div class="img_container_layer2 flex gap20">
+                <div class="play_div w-full h-65 flex justify-end item-center">
+                  <ion-icon
+                    name="play"
+                    class="bg-1ed760 rounded-full text-2xl mr10"
+                  ></ion-icon>
+                </div>
+              </div>
+              <div class="text_area">
+                <h4 class="text-white mt10 roboto-medium">
+                  Welcome back, RJ Balaji - Naallanaa Murukku
+                </h4>
+                <p class="text-gray mt10 roboto-medium">
+                  The perfect soundtrack to those long nights over dinner
+                </p>
+              </div>
+            </div>
+
+            <div class="playlist_box">
+              <div class="img_container_layer1">
+                <img
+                  src="https://seeded-session-images.scdn.co/v2/img/122/secondary/artist/4YRxDV8wJFPHPTeXepOstw/en-GB"
+                  alt=""
+                  srcset=""
+                  class="w-full rounded-md h-full"
+                />
+              </div>
+              <div class="img_container_layer2 flex gap20">
+                <div class="play_div w-full h-65 flex justify-end item-center">
+                  <ion-icon
+                    name="play"
+                    class="bg-1ed760 rounded-full text-2xl mr10"
+                  ></ion-icon>
+                </div>
+              </div>
+              <div class="text_area">
+                <h4 class="text-white mt10 roboto-medium">
+                  Welcome back, RJ Balaji - Naallanaa Murukku
+                </h4>
+                <p class="text-gray mt10 roboto-medium">
+                  The perfect soundtrack to those long nights over dinner
+                </p>
+              </div>
+            </div>
+     
+       
+        
+
+             
+             <div class="playlist_box">
+              <div class="img_container_layer1">
+                <img src="https://seeded-session-images.scdn.co/v2/img/122/secondary/artist/4YRxDV8wJFPHPTeXepOstw/en-GB" alt="" srcset="" class="w-full rounded-md h-full">
+              </div>
+              <div class="img_container_layer2 flex gap20">
+                <div class="play_div w-full h-65  flex justify-end item-center">
+    
+                  <ion-icon name="play" class="bg-1ed760 rounded-full text-2xl mr10"></ion-icon>
+                </div>
+              </div>
+              <div class="text_area">
+                <h4 class="text-white mt10 roboto-medium ">Welcome back, RJ Balaji - Naallanaa Murukku</h4>
+                <p class="text-gray mt10 roboto-medium "> The perfect soundtrack to those long nights over dinner</p>
+              </div>
+             </div>
+
+             
+
+             
+          </div>
+        </div>
+      
+        <div class="playbar flex flex-col">
+          
+          <div class="song_btn flex justify-center gap20" id="Song_container">
+            <ion-icon name="play-skip-back-outline"></ion-icon>
+            <ion-icon name="play-outline" id="play"></ion-icon>
+            <ion-icon name="pause-outline" id="pause"></ion-icon>
+            <ion-icon name="play-skip-forward-outline" id="next"></ion-icon>
+          </div>
+      
+          <input type="range"  min="0" max="335.063946" value="0" class="w-full"  id="volume" />
+        
+        </div>
+      </div>
+
+
+
+    </main>
+    <script src="./Public/JavaScript/script.js"></script>
+  </body>
+</html>

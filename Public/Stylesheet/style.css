@@ -1,0 +1,432 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+
+
+
+
+
+/* Hide the default scrollbar */
+body {
+    overflow: hidden;
+}
+
+/* Style the custom scrollbar for WebKit browsers */
+/* You can adjust the colors and other properties as needed */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #333; /* Dark background color */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #666; /* Dark thumb color */
+    border-radius: 6px;
+}
+
+/* Optionally, you can style the scrollbar corner */
+/* WebKit */
+::-webkit-scrollbar-corner {
+    background: #333;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* main{
+    overflow: hidden;
+} */
+/* WebKit Scrollbar */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #333; /* Dark background color */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #666; /* Dark thumb color */
+    border-radius: 6px;
+}
+
+/* Firefox Scrollbar */
+/* Since Firefox doesn't support pseudo-elements for scrollbar styling, 
+we use scrollbar-color property instead */
+* {
+    scrollbar-color: #666 #333; /* thumb and track colors */
+}
+
+/* Optionally, you can style the scrollbar corner */
+/* WebKit */
+::-webkit-scrollbar-corner {
+    background: #333;
+}
+
+/* Firefox */
+* {
+    scrollbar-color: #666 #333;
+}
+
+
+html , body{
+    background: black;
+}
+
+main{
+width: 100vw;
+height: 150vh;
+position: relative;
+overflow-x: hidden;
+overflow-y: hidden;
+
+}
+
+
+main #left{
+ width: 25%;
+ height: 95%;
+ padding: 5px 5px;
+ /* padding-top: 10px;
+padding-left: 35px; */
+position: fixed;
+background-color: black;
+ left: 0%;
+ top: 0%;
+}
+
+main #right{
+    width: 73%;
+    margin-top: 10px;
+    position: absolute;
+    /* overflow: scroll; */
+    background-color: #1e1e1e;
+    height: 64%;
+    right: 0;
+    }
+    
+
+main #left .logo{
+    width: 85px;
+    height: 42px;
+}
+
+
+   
+#left  #left_part1{
+     padding-top: 10px;
+padding-left: 35px;
+    height: 20%;
+    border: 7px solid black;
+    gap: 20px;
+    background-color: #121212;
+    border-radius: 11px;
+    width: -webkit-fill-available;
+}
+    #left  #left_part1 .logo img{
+     
+        width: 100%;
+        height: 100%;
+    }
+    
+#left  #left_part2{
+    height: 70%;
+    background-color: #121212;
+    width: 100%;
+    border: 7px solid black;
+    width: -webkit-fill-available;
+}
+
+#left  #left_part2 #library_div{
+    height: 65px;
+    width: -webkit-fill-available;
+  
+
+}
+
+   
+
+
+
+
+.home-icon img , .search-icon img , #library_div img{
+    width: 25px;
+    height: 25px;
+}
+
+
+
+
+
+
+
+
+
+#right-part1{
+    /* padding: 8px 8px; */
+    height: 10%;
+background-color: #090909;
+width: 100%;
+}
+
+.right_box1{
+    width: 30%;
+    height: 100%;
+ 
+}
+
+
+
+
+.right_box2{
+    width: 25%;
+    height: 100%;
+    /* background-color: chocolate; */
+
+}
+
+
+#back_forward_div {
+ gap: 15px;
+
+}
+#back_forward_div ion-icon{
+    padding: 5px 5px;
+    background-color: #111111;
+    border-radius: 50%;
+    color: gray;
+    font-size: 1.5rem;
+
+
+}
+
+/* .right_box2 button{
+    border: none;
+
+   border-top-left-radius: 60px;
+   border-top-right-radius: 60px;
+   border-bottom-left-radius: 60px;
+   border-bottom-right-radius: 60px;
+   padding: 19px 49px;
+
+
+}
+ */
+
+ .right_box2 button:nth-child(1){
+  background-color: transparent;
+  color: white;
+
+border: none;
+}
+
+#playlist{
+    width: 83%;
+    margin-left: 12px;
+}
+
+#podcasts_div{
+    width: 83%;
+    margin-left: 12px;
+}
+
+a{
+
+   text-decoration: none;
+}
+
+#container{
+    height: 250px;
+    overflow-y: scroll;
+  width: 100%;
+   overflow-x: hidden;
+}
+
+.playlist_box{
+    width: 250px;
+    position: relative;
+    height: 350px;
+margin: 12px 12px;
+    padding: 12px 12px;
+    border-radius: 11px;
+}
+
+
+.playlist_box
+:hover{
+  cursor: pointer;
+}
+
+
+#playlist_container{
+    flex-wrap: wrap;
+    /* align-items: center; */
+    /* overflow: scroll; */
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 78vh;
+    justify-content: center;
+}
+
+
+.playlist_box:hover{
+    background-color: #151313;
+}
+
+.playlist_box:hover .play_div ion-icon{
+    display: block;
+    opacity: 1;
+    margin-top: 0px;
+    transition: all ease-in-out 0.8s;
+}
+
+
+.playlist_box .img_container_layer1{
+z-index: 1;
+top: 0;
+    width: 100%;
+    height: 70%;
+ 
+}
+
+
+.playlist_box .img_container_layer2{
+    position: absolute;
+  top: 0;
+    z-index: 2;
+    justify-content: end;
+    align-items: end;
+    width: 100%;
+    height: 70%;
+    overflow: hidden;
+    object-fit: contain;
+}
+
+.playlist_box .text_area{
+  
+    width: 100%;
+    height: 30%;
+
+
+
+}
+
+#right-part2 h2{
+  
+  
+
+
+    margin: 15px 29px;
+
+}
+.play_div ion-icon{
+    padding: 15px 15px;
+    margin-bottom: 15px;
+    opacity: 0;
+    display: none;
+    transition: all ease-in 0.5s;
+    margin-right: 30px;
+}
+
+.playbar{
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: rgb(0, 0, 0);
+    position: absolute;
+    z-index: 3;
+    padding: 12px;
+}
+
+.song_btn ion-icon{
+  font-size: 1.5rem;
+  padding:6px 6px;
+  color: white;
+  border: 2px solid white;
+  border-radius: 50%;
+}
+
+.song_btn ion-icon:hover{
+ 
+background-color: white;
+color: black;
+transition: all ease-in 0.2s;
+ 
+ }
+
+ #pause{
+    display: none;
+ }
+
+ #song_item{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+    gap: 35px;
+ }
+
+
+ .info{
+    padding: 10px 10px;
+    /* gap: 15px; */
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+    width: 84%;
+    display: flex;
+    padding: 10px 10px;
+    overflow: hidden;
+    border: 2px solid white;
+    border-radius: 4px;
+ }
+
+
+
+
+ .play_Now{
+    gap: 8px ;
+    font-size: small;
+    align-items: center;
+ }
+
+ .play_Now ion-icon{
+font-size: 2rem;
+/* margin-right: 14px; */
+cursor: pointer;
+ }
+
+ .song_detail{
+    margin-right: 15px;
+    font-size: 1rem;
+align-items: start;
+    width: 60%;
+    text-align: center;
+    font-weight: 100;
+    /* letter-spacing: 1px; */
+    height: fit-content;
+    margin-right: 12px;
+ }
