@@ -1,166 +1,191 @@
-let audio =  new Audio();
-let Song_container = document.getElementById('Song_container')
-let PausedBtn = document.getElementById('pause')
-let volumeEl = document.getElementById('volume')
-let playBtn = document.getElementById('play')
-let NextBtn = document.getElementById('next')
+// Create audio element
+const audio = new Audio();
 
+// Get DOM elements
+const songContainer = document.getElementById('Song_container');
+const pauseBtn = document.getElementById('pause');
+const volumeEl = document.getElementById('volume');
+const playBtn = document.getElementById('play');
+const nextBtn = document.getElementById('next');
+
+// Function to fetch songs asynchronously
 async function getSong() {
-  let a = await fetch('http://127.0.0.1:5500/Public/Songs/')
-  let response = await a.text()
-  let div = document.createElement('div')
-  div.innerHTML = response
+  const response = await fetch('http://127.0.0.1:5500/Public/Songs/');
+  const text = await response.text();
+  const div = document.createElement('div');
+  div.innerHTML = text;
 
-  // Get an element by its ID
-  let searchInput = await div.querySelectorAll('.name')
+  const searchInput = div.querySelectorAll('.name');
+  const arr = [];
 
-  let arr = []
-  //    console.log(arr) // Export Array Function After Pushing item inside array
-  searchInput.forEach(function (li, index) {
+  searchInput.forEach(function(li, index) {
     if (li.innerHTML != '..') {
-      //    console.log(index)
-      // arr.push("./Public/Songs/" + li.innerHTML)
-      let songURL = './Public/Songs/' + li.innerHTML
-      arr.push(songURL)
-
-      return index
+      const songURL = './Public/Songs/' + li.innerHTML;
+      arr.push(songURL);
     }
-  })
+  });
 
-  /** 
-    
-   Returning the song URLs from the getSong() function allows you to handle them in any Function
-   function or any other part of your code. 
-
-     
-     */
-   
-
-  return arr
+  return arr;
 }
 
-
+// Function to handle playing of audio
 function play() {
   if (audio.play) {
-    playBtn.style.display = 'none'
-    PausedBtn.style.display = 'block'
-    const x = setInterval(() => {
-      console.log(audio.currentTime) // Log current time
-      volumeEl.setAttribute('value', `${audio.currentTime}`)
-      volumeEl.setAttribute('max', `${audio.duration}`)
-      if (audio.currentTime === audio.duration) {
-        volumeEl.setAttribute('value', `0`)
-      }
-      console.log(audio.duration) // Log duration
-      // volumeEl.getAttribute('value').innerHTML = ; // Update volumeEl with current time
-    }, 1000)
-    console.log(audio)
-    audio.play()
+    playBtn.style.display = 'none';
+    
+    pauseBtn.style.display = 'block';
+    volumeEl.addEventListener('input', function() {
+      console.log('Current volume:', this.value);
+    
 
+
+      if (this.value != audio.currentTime) {
+        audio.currentTime = `${this.value}`;
+      }
+
+     console.log( "  g" , audio.currentTime)
+     
+
+
+      console.log(audio.currentTime)
+      
+      console.log(audio.currentSrc)
+
+      const x = setInterval(() => {
+        this.value = audio.currentTime;
+        // console.log(audio.currentTime , this.value);
+
+
+        // if (audio.currentTime === 0) {
+        //   this.value = 0;
+        // }
+
+        if (audio.currentTime === audio.duration) {
+          this.value = 0;
+          
+        }
+  
+  
+        
+      }, 1000);
+
+      
+
+  
+    });
+
+
+  
+
+
+  
+
+    console.log(audio);
+    audio.play();
   }
 }
 
+// Function to handle fetching songs and populating the song list
 async function cart() {
-  let songs = await getSong()
-  let b = document.getElementById('song_item')
-  console.log(b)
-  for (songs of songs) {
-    b.innerHTML =
-      b.innerHTML +
+  const songs = await getSong();
+  const b = document.getElementById('song_item');
+  console.log(b);
+
+  songs.forEach(function(song) {
+    b.innerHTML +=
       `
    <div class="info">
-  <div class="song_icon"><ion-icon name="musical-notes-outline"></ion-icon></div>
-  <div class="song_detail flex flex-col ">
-   <p>${songs.replace('./Public/Songs/', '')}
-</p>
+      <div class="song_icon"><ion-icon name="musical-notes-outline"></ion-icon></div>
+      <div class="song_detail flex flex-col ">
+         <p>${song.replace('./Public/Songs/', '')}</p>
+      </div>
+      <div class="play_Now flex ">
+         <p>Play Now </p>
+         <ion-icon name="play-circle-outline"></ion-icon>
+      </div>
+   </div>`;
+  });
 
-  </div>
+  const songInfo = document.querySelectorAll('.info');
 
-  <div class="play_Now flex ">
-    <p>Play Now </p>
-    <ion-icon name="play-circle-outline"></ion-icon>
-  </div>
-</div> `
-  }
+  songInfo.forEach(function(song) {
+    song.addEventListener('click', async function() {
+      const src = await song.childNodes[3].childNodes[1].innerHTML;
+      const audio = await playMusic(src);
+      volumeEl.setAttribute('value', `0`);
+      console.log(volumeEl.getAttribute('value'))
 
-  let songInfo = document.querySelectorAll('.info')
+      console.log(volumeEl.value)
+      
+      const x = setInterval(() => {
+        volumeEl.value = audio.currentTime;
+        console.log(audio.currentTime)
+      
 
-  songInfo.forEach(function (song) {
-    // console.log()
-    song.addEventListener('click', async function () {
-      let src = await song.childNodes[3].childNodes[1].innerHTML
-      let audio = await playMusic(src);
+        if (audio.currentTime === audio.duration) {
+          this.value = 0;
+          
+        }
+  
+  
+        
+      }, 1000);
 
-      console.log(audio.play)
-      // audio.play()
-      await play(audio)
-      await pause(audio)
+  
+      // volumeEl.setAttribute('value', `0`);
+      // if (condition) {
+        
+      // }
 
-
-      //  let play = await  play(audio)
-      // console.log(b)
-    })
-  })
+      console.log(audio.play);
+      await play(audio);
+      await pause(audio);
+    });
+  });
 }
 
-playBtn.addEventListener('click',function(){
+// Event listener for play button
+playBtn.addEventListener('click', function() {
+  playBtn.style.display = 'none';
+  pauseBtn.style.display = 'block';
+  audio.play();
+});
 
-  playBtn.style.display = 'none'
-  PausedBtn.style.display = 'block'
-  audio.play()
+// Event listener for pause button
+pauseBtn.addEventListener('click', function() {
+  playBtn.style.display = 'block';
+  pauseBtn.style.display = 'none';
+  audio.pause();
+});
 
-})
-
-PausedBtn.addEventListener('click',function(){
-
- audio.src = "/Public/Songs/Heropanti Raat Bhar   (1).m4a"
-  playBtn.style.display = 'block'
-  PausedBtn.style.display = 'none'
-  audio.pause()
-
-})
-
-
-var index = 0
-
+// Function to play the next song
+let index = 0;
 async function next() {
-  // audio = new Audio(arr[1]);
-  index++
-  console.log(index)
-  return index
+  index++;
+  console.log(index);
+  return index;
 }
 
-
-
-let playMusic = async function (src) {
- audio.setAttribute('src', '/Public/Songs/' + src);
+// Function to set audio source and return audio element
+const playMusic = async function(src) {
+  audio.setAttribute('src', '/Public/Songs/' + src);
   return audio;
 }
 
+// Main function to start the process
 async function main() {
-  let arr = await getSong()
-  let index = 2
-  let songs = await getSong()
+  const arr = await getSong();
+  let index = 2;
+  const songs = await getSong();
 
-
- 
-
-
-
-
-
-  // let main = document.querySelector('main')
-  audio.addEventListener('canplaythrough', async function (b) {
-    console.log(b)
-    let duration = audio.duration;
-
-
-    console.log(audio.currentTime)
+  audio.addEventListener('canplaythrough', async function(b) {
+    console.log(b);
+    const duration = audio.duration;
+    console.log(audio.currentTime);
     console.log(audio.duration);
-  })
-
-
+  });
 }
 
-main()
-cart()
+// Call main and cart functions
+main();
+cart();
