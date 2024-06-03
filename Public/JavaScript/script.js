@@ -119,6 +119,7 @@ async function cart() {
       
       const x = setInterval(() => {
         volumeEl.value = audio.currentTime;
+        volumeEl.max = audio.duration;
         console.log(audio.currentTime)
       
 
