@@ -18,7 +18,7 @@ async function getSong() {
   const searchInput = div.querySelectorAll('.name');
   const arr = [];
 
-  searchInput.forEach(function(li, index) {
+  searchInput.forEach(function (li, index) {
     if (li.innerHTML != '..') {
       const songURL = './Public/Songs/' + li.innerHTML;
       arr.push(songURL);
@@ -28,62 +28,7 @@ async function getSong() {
   return arr;
 }
 
-// Function to handle playing of audio
-function play() {
-  if (audio.play) {
-    playBtn.style.display = 'none';
-    
-    pauseBtn.style.display = 'block';
-    volumeEl.addEventListener('input', function() {
-      console.log('Current volume:', this.value);
-    
 
-
-      if (this.value != audio.currentTime) {
-        audio.currentTime = `${this.value}`;
-      }
-
-     console.log( "  g" , audio.currentTime)
-     
-
-
-      console.log(audio.currentTime)
-      
-      console.log(audio.currentSrc)
-
-      const x = setInterval(() => {
-        this.value = audio.currentTime;
-        // console.log(audio.currentTime , this.value);
-
-
-        // if (audio.currentTime === 0) {
-        //   this.value = 0;
-        // }
-
-        if (audio.currentTime === audio.duration) {
-          this.value = 0;
-          
-        }
-  
-  
-        
-      }, 1000);
-
-      
-
-  
-    });
-
-
-  
-
-
-  
-
-    console.log(audio);
-    audio.play();
-  }
-}
 
 // Function to handle fetching songs and populating the song list
 async function cart() {
@@ -91,7 +36,7 @@ async function cart() {
   const b = document.getElementById('song_item');
   console.log(b);
 
-  songs.forEach(function(song) {
+  songs.forEach(function (song) {
     b.innerHTML +=
       `
    <div class="info">
@@ -106,54 +51,211 @@ async function cart() {
    </div>`;
   });
 
+
+  // let song_item = document.querySelectorAll('.info')
+
+
+
+
+  // if (audio.pause) {
+  //   song_item.forEach(function (elem) {
+  //     elem.addEventListener('click', function () {
+  //       console.log(elem.childNodes[1])
+  //       console.log(elem.childNodes[2])
+  //       console.log(elem.childNodes[3])
+  //       elem.childNodes[5].innerHTML = `
+  //       <p>Play Now </p>
+  //      <ion-icon name="pause-circle-outline"></ion-icon>
+  //     `
+  //     })
+
+
+
+  //   })
+
+  //   // HandleSongInfo()
+
+
+
+
+  // } else {
+
+
+
+  //   song_item.forEach(function (elem) {
+  //     elem.addEventListener('click', function () {
+  //       console.log(elem.childNodes[1])
+  //       console.log(elem.childNodes[2])
+  //       console.log(elem.childNodes[3])
+  //       elem.childNodes[5].innerHTML = `
+  //       <p>Play Now </p>
+  //       <ion-icon name="play-circle-outline"></ion-icon>
+  //     `
+  //     })
+
+
+
+  //   })
+  //   // HandleSongInfo()
+  //   play()
+
+  // }
+
+
+
+
+
+
+
+
+  HandleSongInfo()
+
+}
+
+
+
+let HandleSongInfo = () => {
+
   const songInfo = document.querySelectorAll('.info');
 
   songInfo.forEach(function(song) {
-    song.addEventListener('click', async function() {
+
+    
+
+    song.addEventListener('click', async function () {
+      // alert()
+
+      // console.log(song.innerHTML)
+
+
+
       const src = await song.childNodes[3].childNodes[1].innerHTML;
-      const audio = await playMusic(src);
-      volumeEl.setAttribute('value', `0`);
-      console.log(volumeEl.getAttribute('value'))
-
-      console.log(volumeEl.value)
-      
-      const x = setInterval(() => {
-        volumeEl.value = audio.currentTime;
-        volumeEl.max = audio.duration;
-        console.log(audio.currentTime)
-      
-
-        if (audio.currentTime === audio.duration) {
-          this.value = 0;
-          
-        }
-  
-  
-        
-      }, 1000);
-
-  
-      // volumeEl.setAttribute('value', `0`);
-      // if (condition) {
-        
-      // }
-
-      console.log(audio.play);
-      await play(audio);
-      await pause(audio);
+      audio.src = `/Public/Songs/${src}`;
+      // console.log("stc", src)
+      // console.log("dfsg", audio.src = `/Public/Songs/${src}`)
+      play()
+    
     });
   });
+
+
+
 }
 
+
+
+
+// Function to handle playing of audio
+function play() {
+  if (audio.play) {
+    playBtn.style.display = 'none';
+
+    pauseBtn.style.display = 'block';
+
+
+    console.log("src ", audio.src)
+
+    // if song Element Src in Blank the set Song
+    if (!audio.src) {
+      // console.log('gana nhi hain') 
+      audio.src = "/Public/Songs/TU HAI KAHAN.m4a";
+    }
+
+
+
+    audioTracker()
+
+    volumeEl.addEventListener('input', function () {
+      console.log('Current volume:', this.value);
+
+
+
+
+
+
+      //  audioTracker()
+
+      if (this.value != audio.currentTime) {
+        audio.currentTime = `${this.value}`;
+      }
+
+
+
+
+
+
+
+      // console.log("  g", audio.currentTime)
+
+
+      // console.log(audio.currentTime)
+
+      // console.log(audio.currentSrc)
+
+
+
+    });
+
+
+
+
+
+
+
+    console.log(audio);
+    audio.play();
+  }
+}
+
+
+
+
+// handle AudioTracker
+let audioTracker = () => {
+  // console.log(volumeEl.getAttribute('value'))
+
+  // console.log(volumeEl.value)
+
+  const x = setInterval(() => {
+    volumeEl.value = audio.currentTime;
+    volumeEl.max = audio.duration;
+    // console.log(audio.currentTime)
+    // console.log( audio.duration)
+
+
+
+    if (audio.currentTime === audio.duration) {
+      this.value = 0;
+
+    }
+
+
+
+  }, 1000);
+
+  console.log(x)
+}
+
+
+
+
+
+//  0.2 => 20% volume
+//  0.3 => 30% volume
+//  0.4 => 40% volume
+//  0.5 => 50% volume
+//  0.6 => 60% volume
+
+
+
+audio.volume = 0.7;
+
+
 // Event listener for play button
-playBtn.addEventListener('click', function() {
-  playBtn.style.display = 'none';
-  pauseBtn.style.display = 'block';
-  audio.play();
-});
+playBtn.addEventListener('click', play);
 
 // Event listener for pause button
-pauseBtn.addEventListener('click', function() {
+pauseBtn.addEventListener('click', function () {
   playBtn.style.display = 'block';
   pauseBtn.style.display = 'none';
   audio.pause();
@@ -167,19 +269,31 @@ async function next() {
   return index;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Function to set audio source and return audio element
-const playMusic = async function(src) {
-  audio.setAttribute('src', '/Public/Songs/' + src);
-  return audio;
-}
+// const playMusic = async function (src) {
+//   audio.setAttribute('src', '/Public/Songs/' + src);
+//   return audio;
+// }
 
 // Main function to start the process
 async function main() {
-  const arr = await getSong();
-  let index = 2;
-  const songs = await getSong();
 
-  audio.addEventListener('canplaythrough', async function(b) {
+
+  audio.addEventListener('canplaythrough', async function (b) {
     console.log(b);
     const duration = audio.duration;
     console.log(audio.currentTime);
@@ -187,6 +301,67 @@ async function main() {
   });
 }
 
-// Call main and cart functions
+
+
+
+
+
+
+
+
+let HandleToggle = () => {
+  let Open_menu = document.getElementById('menu');
+  let Close_menu = document.getElementById('close_menu')
+
+  Open_menu.addEventListener('click', function () {
+
+
+
+    document.getElementById('left').style.display = "flex";
+    document.getElementById('right').style.width = "73%";
+    document.getElementById('left').style.position = "absolute";
+    document.getElementById('left').style.left = "0px"
+    Open_menu.style.display = "none";
+    Close_menu.style.display = "block"
+
+  })
+
+
+  console.log(Close_menu)
+
+  Close_menu.addEventListener('click', function () {
+    Open_menu.style.display = "block";
+    Close_menu.style.display = "none"
+
+    document.getElementById('left').style.display = "none";
+    document.getElementById('right').style.width = "100%";
+    document.getElementById('left').style.position = "absolute";
+    document.getElementById('left').style.left = "0px"
+
+    console.log("menu", menu)
+    console.log(flag)
+
+  })
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 main();
 cart();
+HandleToggle()

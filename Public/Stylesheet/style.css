@@ -135,7 +135,14 @@ main #left .logo{
 }
 
 
-   
+#menu{
+    display: none;
+  
+}
+
+   #close_menu {
+    display: none;
+   }
 #left  #left_part1{
      padding-top: 10px;
 padding-left: 35px;
