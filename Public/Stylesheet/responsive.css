@@ -10,9 +10,76 @@
         
     }
 
-    .right_box2{
+    /* .right_box2{
         width: 32%;
     }
+
+
+    */
+
+#menu{
+    color: white;
+    display: block;
+    font-size: 2rem;
+  
+}
+   #chevron-back{
+    display: none;
+   }
+
+   #chevron-forward{
+    display: none;
+   }
+}
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 874px) {
+    #left{
+        display: none;
+        z-index: 300;
+        width: 35%;
+    }
+
+    main #right {
+        width: 100%;
+        
+    }
+
+
+
+    
+
+  
+    .right_box2 button{
+        display: none;
+    }
+
+
+    .right_box1{
+        position: fixed;
+        right: 0;
+        display: flex;
+        justify-content: end;
+        top: 0;
+        height: fit-content;
+        margin-top: 10px;
+        z-index: 800;
+    }
+
+
+    .right_box1  div ion-icon{
+        background-color: rgb(126, 32, 32);
+       
+    }
+
+
 
 
 #menu{
@@ -21,6 +88,12 @@
     font-size: 2rem;
   
 }
+
+
+
+
+
+
    #chevron-back{
     display: none;
    }

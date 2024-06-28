@@ -34,7 +34,7 @@ async function getSong() {
 async function cart() {
   const songs = await getSong();
   const b = document.getElementById('song_item');
-  console.log(b);
+  // console.log(b);
 
   songs.forEach(function (song) {
     b.innerHTML +=
@@ -53,8 +53,6 @@ async function cart() {
 
 
   // let song_item = document.querySelectorAll('.info')
-
-
 
 
   // if (audio.pause) {
@@ -102,15 +100,11 @@ async function cart() {
   // }
 
 
-
-
-
-
-
-
   HandleSongInfo()
 
 }
+
+
 
 
 
@@ -118,9 +112,9 @@ let HandleSongInfo = () => {
 
   const songInfo = document.querySelectorAll('.info');
 
-  songInfo.forEach(function(song) {
+  songInfo.forEach(function (song) {
 
-    
+
 
     song.addEventListener('click', async function () {
       // alert()
@@ -134,7 +128,7 @@ let HandleSongInfo = () => {
       // console.log("stc", src)
       // console.log("dfsg", audio.src = `/Public/Songs/${src}`)
       play()
-    
+
     });
   });
 
@@ -153,7 +147,7 @@ function play() {
     pauseBtn.style.display = 'block';
 
 
-    console.log("src ", audio.src)
+    // console.log("src ", audio.src)
 
     // if song Element Src in Blank the set Song
     if (!audio.src) {
@@ -166,7 +160,7 @@ function play() {
     audioTracker()
 
     volumeEl.addEventListener('input', function () {
-      console.log('Current volume:', this.value);
+      // console.log('Current volume:', this.value);
 
 
 
@@ -202,7 +196,7 @@ function play() {
 
 
 
-    console.log(audio);
+    // console.log(audio);
     audio.play();
   }
 }
@@ -233,8 +227,11 @@ let audioTracker = () => {
 
   }, 1000);
 
-  console.log(x)
+  // console.log(x)
 }
+
+
+
 
 
 
@@ -279,10 +276,6 @@ async function next() {
 
 
 
-
-
-
-
 // Function to set audio source and return audio element
 // const playMusic = async function (src) {
 //   audio.setAttribute('src', '/Public/Songs/' + src);
@@ -309,18 +302,25 @@ async function main() {
 
 
 
-let HandleToggle = () => {
+
+
+
+
+function handleToggle() {
+  let mediaQuery = window.matchMedia('(max-width: 978px)');
   let Open_menu = document.getElementById('menu');
   let Close_menu = document.getElementById('close_menu')
 
   Open_menu.addEventListener('click', function () {
 
-
+    console.log(mediaQuery)
 
     document.getElementById('left').style.display = "flex";
-    document.getElementById('right').style.width = "73%";
-    document.getElementById('left').style.position = "absolute";
+    document.getElementById('left').style.width = "25%";
+    document.getElementById('left').style.position = "fixed";
     document.getElementById('left').style.left = "0px"
+    document.getElementById('right').style.width = "73%";
+
     Open_menu.style.display = "none";
     Close_menu.style.display = "block"
 
@@ -337,15 +337,59 @@ let HandleToggle = () => {
     document.getElementById('right').style.width = "100%";
     document.getElementById('left').style.position = "absolute";
     document.getElementById('left').style.left = "0px"
+    console.log(mediaQuery)
 
     console.log("menu", menu)
     console.log(flag)
 
   })
 
+ 
+  // Define the media query
+// const mediaQuery = window.matchMedia('(max-width: 1258px)');
 
 
 
+console.log(mediaQuery)
+
+if(mediaQuery.matches){
+
+  Open_menu.addEventListener('click', function () {
+
+
+
+    document.getElementById('left').style.display = "flex";
+    document.getElementById('left').style.width = "100%";
+    document.getElementById('right').style.display = "none";
+    document.getElementById('right').style.width = "0%";
+    document.getElementById('left').style.position = "absolute";
+    document.getElementById('left').style.left = "0px"
+    Open_menu.style.display = "none";
+    Close_menu.style.display = "block"
+
+  })
+
+
+  console.log(Close_menu)
+
+  Close_menu.addEventListener('click', function () {
+    Open_menu.style.display = "block";
+    Close_menu.style.display = "none"
+
+    document.getElementById('left').style.display = "none";
+    document.getElementById('right').style.width = "100%";
+    document.getElementById('left').style.width = "0%";
+    document.getElementById('left').style.position = "absolute";
+    document.getElementById('left').style.left = "0px"
+
+    console.log("menu", menu)
+
+
+  })
+
+ 
+
+}
 
 
 
@@ -355,13 +399,7 @@ let HandleToggle = () => {
 
 
 
-
-
-
-
-
-
-
 main();
 cart();
-HandleToggle()
+handleToggle()
+
