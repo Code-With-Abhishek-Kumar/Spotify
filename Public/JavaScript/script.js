@@ -7,6 +7,7 @@ const pauseBtn = document.getElementById('pause');
 const volumeEl = document.getElementById('volume');
 const playBtn = document.getElementById('play');
 const nextBtn = document.getElementById('next');
+const PreviousBtn = document.getElementById('Previous');
 
 // Function to fetch songs asynchronously
 async function getSong() {
@@ -19,12 +20,14 @@ async function getSong() {
   const arr = [];
 
   searchInput.forEach(function (li, index) {
+    console.log(li)
     if (li.innerHTML != '..') {
       const songURL = './Public/Songs/' + li.innerHTML;
+      
       arr.push(songURL);
     }
   });
-
+  console.log(arr)
   return arr;
 }
 
@@ -108,11 +111,11 @@ async function cart() {
 
 
 
-let HandleSongInfo = () => {
+let HandleSongInfo = async() => {
 
   const songInfo = document.querySelectorAll('.info');
 
-  songInfo.forEach(function (song) {
+  songInfo.forEach( function (song) {
 
 
 
@@ -127,9 +130,13 @@ let HandleSongInfo = () => {
       audio.src = `/Public/Songs/${src}`;
       // console.log("stc", src)
       // console.log("dfsg", audio.src = `/Public/Songs/${src}`)
-      play()
+      await audioTracker()
+      await play();
+ 
 
+     
     });
+
   });
 
 
@@ -157,7 +164,7 @@ function play() {
 
 
 
-    audioTracker()
+
 
     volumeEl.addEventListener('input', function () {
       // console.log('Current volume:', this.value);
@@ -233,9 +240,85 @@ let audioTracker = () => {
 
 
 
+nextBtn.addEventListener('click' , async() => {
+
+ let SongIndex =  await FindSongIndex()
+ SongIndex++
+
+ const songs = await getSong();
+ let nextSongSrc = songs.slice(0)[SongIndex]
+
+audio.src =  nextSongSrc;
+ await audioTracker()
+ await play();
+
+//  console.log(audio)
+
+//  alert(audio.src)
+
+//  console.log(SongIndex)
+
+//  
+
+//  alert()
+//  let arr = s
+//  audio.setAttribute('src' , songs[`/`,SongIndex++] )
+//  alert(audio.src)
+
+
+//  let NextSong = 
 
 
 
+
+//  audio.src = SongIndex;
+
+
+
+
+})
+
+
+
+PreviousBtn.addEventListener('click' , async() => {
+  
+
+  let SongIndex =  await FindSongIndex()
+  SongIndex--
+ 
+  const songs = await getSong();
+  let nextSongSrc = songs.slice(0)[SongIndex]
+ 
+ audio.src =  nextSongSrc;
+  await audioTracker()
+  await play();
+ 
+ //  console.log(audio)
+ 
+ //  alert(audio.src)
+ 
+ //  console.log(SongIndex)
+ 
+ //  
+ 
+ //  alert()
+ //  let arr = s
+ //  audio.setAttribute('src' , songs[`/`,SongIndex++] )
+ //  alert(audio.src)
+ 
+ 
+ //  let NextSong = 
+ 
+ 
+ 
+ 
+ //  audio.src = SongIndex;
+ 
+ 
+ 
+ 
+ })
+ 
 
 //  0.2 => 20% volume
 //  0.3 => 30% volume
@@ -257,6 +340,9 @@ pauseBtn.addEventListener('click', function () {
   pauseBtn.style.display = 'none';
   audio.pause();
 });
+
+
+
 
 // Function to play the next song
 let index = 0;
@@ -301,50 +387,14 @@ async function main() {
 
 
 
-
-
-
-
-
-function handleToggle() {
-  let mediaQuery = window.matchMedia('(max-width: 978px)');
+let mediaQuery = window.matchMedia('(max-width: 978px)');
   let Open_menu = document.getElementById('menu');
   let Close_menu = document.getElementById('close_menu')
 
-  Open_menu.addEventListener('click', function () {
-
-    console.log(mediaQuery)
-
-    document.getElementById('left').style.display = "flex";
-    document.getElementById('left').style.width = "25%";
-    document.getElementById('left').style.position = "fixed";
-    document.getElementById('left').style.left = "0px"
-    document.getElementById('right').style.width = "73%";
-
-    Open_menu.style.display = "none";
-    Close_menu.style.display = "block"
-
-  })
 
 
-  console.log(Close_menu)
 
-  Close_menu.addEventListener('click', function () {
-    Open_menu.style.display = "block";
-    Close_menu.style.display = "none"
 
-    document.getElementById('left').style.display = "none";
-    document.getElementById('right').style.width = "100%";
-    document.getElementById('left').style.position = "absolute";
-    document.getElementById('left').style.left = "0px"
-    console.log(mediaQuery)
-
-    console.log("menu", menu)
-    console.log(flag)
-
-  })
-
- 
   // Define the media query
 // const mediaQuery = window.matchMedia('(max-width: 1258px)');
 
@@ -359,9 +409,9 @@ if(mediaQuery.matches){
 
 
     document.getElementById('left').style.display = "flex";
-    document.getElementById('left').style.width = "100%";
-    document.getElementById('right').style.display = "none";
-    document.getElementById('right').style.width = "0%";
+    document.getElementById('left').style.width = "46%";
+    document.getElementById('right').style.display = "flex";
+    document.getElementById('right').style.width = "53%";
     document.getElementById('left').style.position = "absolute";
     document.getElementById('left').style.left = "0px"
     Open_menu.style.display = "none";
@@ -393,13 +443,75 @@ if(mediaQuery.matches){
 
 
 
+if (window.matchMedia("(max-width: 660px)").matches) {
+
+
+  Open_menu.addEventListener('click', function () {
+
+
+
+    document.getElementById('left').style.display = "flex";
+    document.getElementById('left').style.width = "77%";
+    document.getElementById('right').style.display = "flex";
+    document.getElementById('right').style.width = "100%";
+    document.getElementById('left').style.position = "absolute";
+    document.getElementById('left').style.left = "0px"
+    Open_menu.style.display = "none";
+    Close_menu.style.display = "block"
+
+  })
+
+
+  console.log(Close_menu)
+
+  Close_menu.addEventListener('click', function () {
+    Open_menu.style.display = "block";
+    Close_menu.style.display = "none"
+
+    document.getElementById('left').style.display = "none";
+    document.getElementById('right').style.width = "100%";
+    document.getElementById('left').style.width = "0%";
+    document.getElementById('left').style.position = "absolute";
+    document.getElementById('left').style.left = "0px"
+
+    console.log("menu", menu)
+
+
+  })
+
+
+
+
+} else {
+
+
+
+
 }
 
+
+
+
+let FindSongIndex = async() => {
+ 
+const songs = await getSong();
+
+// console.log(audio)
+let Audio_Src = audio.getAttribute('src')
+// console.log(Audio_Src)
+
+  // console.log(c)
+let SongsIndex = songs.indexOf(`.${Audio_Src}`)
+return SongsIndex;
+
+  
+}
 
 
 
 
 main();
 cart();
-handleToggle()
+
+
 

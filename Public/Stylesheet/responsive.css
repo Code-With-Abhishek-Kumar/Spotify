@@ -3,6 +3,7 @@
         display: none;
         z-index: 300;
         width: 35%;
+        height: 100%;
     }
 
     main #right {
@@ -10,12 +11,13 @@
         
     }
 
-    /* .right_box2{
-        width: 32%;
+    .right_box2 {
+        width: 35%;
+        height: 100%;
+        /* background-color: chocolate; */
     }
 
 
-    */
 
 #menu{
     color: white;
@@ -46,6 +48,15 @@
         z-index: 300;
         width: 35%;
     }
+
+    #right-part1 {
+        /* padding: 8px 8px; */
+        height: 10%;
+        background-color: #090909;
+        width: 0%;
+    }
+
+
 
     main #right {
         width: 100%;
@@ -86,7 +97,7 @@
     color: white;
     display: block;
     font-size: 2rem;
-  
+  z-index: 900;
 }
 
 
